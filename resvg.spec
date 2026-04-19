@@ -75,10 +75,11 @@ It contains static libraries for -static linking which is highly discouraged.
 
 %prep
 %autosetup -p1
+%cargo_prep
 
 %build
 %global build_rustflags  -Clink-arg=-Wl,-z,relro,-z,now,-soname,libresvg.so.%{soname} -C debuginfo=2 -C strip=none
-%{cargo_build} --all
+%cargo_build --all
 
 %install
 #%%{cargo_install}
