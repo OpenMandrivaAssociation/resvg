@@ -1,6 +1,9 @@
 %undefine _debugsource_packages
 %define soname  0
 
+%define libname %mklibname resvg
+%define devname %mklibname -d resvg
+
 Name:           resvg
 Version:        0.47.0
 Release:        1
@@ -9,6 +12,7 @@ License:        Apache-2.0 OR MIT
 Group:          Productivity/Graphics/Convertors
 URL:            https://github.com/linebender/resvg
 Source0:        https://github.com/linebender/resvg/releases/download/v%{version}/%{name}-%{version}.tar.xz
+# no need to use own vendor because tarball comes with pre-vondered stuff.
 #Source1:        vendor.tar.zst
 BuildRequires:  rust-packaging
 BuildRequires:  zstd
@@ -45,27 +49,27 @@ simple representation, which is still a valid SVG:
 * CSS will be resolved
 and so on.
 
-%package -n lib%{name}%{soname}
+%package -n %{libname}
 Summary:        SVG rendering library (C++/Qt API)
 Group:          Development/Libraries/C and C++
 
-%description -n lib%{name}%{soname}
+%description -n %{libname}
 An SVG rendering library (C++/Qt API).
 This package contains shared library.
 
-%package devel
+%package -n %{devname}
 Summary:        SVG rendering library (C++/Qt API)
 Group:          Development/Libraries/C and C++
-Requires:       lib%{name}%{soname} = %{version}-%{release}
+Requires:	%{libname} = %{EVRD}
 
-%description devel
+%description -n %{devname}
 An SVG rendering library (C++/Qt API).
 This package contains development files for %{name}.
 
 %package devel-static
 Summary:        SVG rendering library (C++/Qt API)
 Group:          Development/Libraries/C and C++
-Requires:       %{name}-devel = %{version}-%{release}
+Requires:	%{devname} = %{EVRD}
 
 %description devel-static
 An SVG rendering library (C++/Qt API).
@@ -99,10 +103,10 @@ install -Dm 0644 ./crates/c-api/*.h -t %{buildroot}%{_includedir}/
 %files -n usvg
 %{_bindir}/usvg
 
-%files -n lib%{name}%{soname}
+%files -n %{libname}
 %{_libdir}/lib%{name}.so.*
 
-%files devel
+%files -n %{devname}
 %{_libdir}/lib%{name}.so
 %{_includedir}/%{name}.h
 %{_includedir}/ResvgQt.h
