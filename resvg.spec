@@ -1,3 +1,4 @@
+%undefine _debugsource_packages
 %define soname  0
 
 Name:           resvg
