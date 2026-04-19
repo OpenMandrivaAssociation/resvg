@@ -81,7 +81,7 @@ It contains static libraries for -static linking which is highly discouraged.
 %cargo_build
 
 %install
-%cargo_install
+%cargo_install resvg usvg
 #install -Dm 0755 ./target/release/%{name} %{buildroot}%{_bindir}/%{name}
 #install -Dm 0755 ./target/release/usvg %{buildroot}%{_bindir}/usvg
 #install -Dm 0755 ./target/release/lib%{name}.so %{buildroot}%{_libdir}/lib%{name}.so.%{version}
