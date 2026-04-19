@@ -74,7 +74,7 @@ It contains static libraries for -static linking which is highly discouraged.
 
 %prep
 %autosetup -p1
-%cargo_prep
+%cargo_prep -v vendor
 cat >>.cargo/config.toml <<EOF
 [source.crates-io]
 replace-with = "vendored-sources"
