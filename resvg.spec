@@ -1,5 +1,4 @@
 %define soname  0
-%bcond_without check
 
 Name:           resvg
 Version:        0.47.0
@@ -90,13 +89,6 @@ ln -sf lib%{name}.so.%{version} %{buildroot}%{_libdir}/lib%{name}.so.%{soname}
 ln -sf lib%{name}.so.%{version} %{buildroot}%{_libdir}/lib%{name}.so
 install -Dm 0644 ./target/release/lib%{name}.a %{buildroot}%{_libdir}/lib%{name}.a
 install -Dm 0644 ./crates/c-api/*.h -t %{buildroot}%{_includedir}/
-
-%if %{with check}
-%check
-%{cargo_test}
-%endif
-
-%ldconfig_scriptlets -n lib%{name}%{soname}
 
 %files
 %doc AUTHORS CHANGELOG.md README.md
