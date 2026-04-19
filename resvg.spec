@@ -81,14 +81,14 @@ It contains static libraries for -static linking which is highly discouraged.
 %cargo_build
 
 %install
-#%%{cargo_install}
-install -Dm 0755 ./target/release/%{name} %{buildroot}%{_bindir}/%{name}
-install -Dm 0755 ./target/release/usvg %{buildroot}%{_bindir}/usvg
-install -Dm 0755 ./target/release/lib%{name}.so %{buildroot}%{_libdir}/lib%{name}.so.%{version}
-ln -sf lib%{name}.so.%{version} %{buildroot}%{_libdir}/lib%{name}.so.%{soname}
-ln -sf lib%{name}.so.%{version} %{buildroot}%{_libdir}/lib%{name}.so
-install -Dm 0644 ./target/release/lib%{name}.a %{buildroot}%{_libdir}/lib%{name}.a
-install -Dm 0644 ./crates/c-api/*.h -t %{buildroot}%{_includedir}/
+%cargo_install
+#install -Dm 0755 ./target/release/%{name} %{buildroot}%{_bindir}/%{name}
+#install -Dm 0755 ./target/release/usvg %{buildroot}%{_bindir}/usvg
+#install -Dm 0755 ./target/release/lib%{name}.so %{buildroot}%{_libdir}/lib%{name}.so.%{version}
+#ln -sf lib%{name}.so.%{version} %{buildroot}%{_libdir}/lib%{name}.so.%{soname}
+#ln -sf lib%{name}.so.%{version} %{buildroot}%{_libdir}/lib%{name}.so
+#install -Dm 0644 ./target/release/lib%{name}.a %{buildroot}%{_libdir}/lib%{name}.a
+#install -Dm 0644 ./crates/c-api/*.h -t %{buildroot}%{_includedir}/
 
 %files
 %doc AUTHORS CHANGELOG.md README.md
