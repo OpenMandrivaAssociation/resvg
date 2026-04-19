@@ -78,16 +78,16 @@ It contains static libraries for -static linking which is highly discouraged.
 
 %build
 #global build_rustflags  -Clink-arg=-Wl,-z,relro,-z,now,-soname,libresvg.so.%{soname} -C debuginfo=2 -C strip=none
-cargo build --all
+cargo build --all --release
 
 %install
 #cargo install resvg usvg
-install -Dm 0755 ./target/rpm/%{name} %{buildroot}%{_bindir}/%{name}
-install -Dm 0755 ./target/rpm/usvg %{buildroot}%{_bindir}/usvg
-install -Dm 0755 ./target/rpm/lib%{name}.so %{buildroot}%{_libdir}/lib%{name}.so.%{version}
+install -Dm 0755 ./target/release/%{name} %{buildroot}%{_bindir}/%{name}
+install -Dm 0755 ./target/release/usvg %{buildroot}%{_bindir}/usvg
+install -Dm 0755 ./target/release/lib%{name}.so %{buildroot}%{_libdir}/lib%{name}.so.%{version}
 ln -sf lib%{name}.so.%{version} %{buildroot}%{_libdir}/lib%{name}.so.%{soname}
 ln -sf lib%{name}.so.%{version} %{buildroot}%{_libdir}/lib%{name}.so
-install -Dm 0644 ./target/rpm/lib%{name}.a %{buildroot}%{_libdir}/lib%{name}.a
+install -Dm 0644 ./target/release/lib%{name}.a %{buildroot}%{_libdir}/lib%{name}.a
 install -Dm 0644 ./crates/c-api/*.h -t %{buildroot}%{_includedir}/
 
 %files
