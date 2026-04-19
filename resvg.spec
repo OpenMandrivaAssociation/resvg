@@ -85,7 +85,7 @@ EOF
 
 %build
 #global build_rustflags  -Clink-arg=-Wl,-z,relro,-z,now,-soname,libresvg.so.%{soname} -C debuginfo=2 -C strip=none
-%cargo_build
+cargo build
 
 %install
 #%%{cargo_install}
