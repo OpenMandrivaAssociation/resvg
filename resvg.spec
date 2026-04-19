@@ -78,7 +78,7 @@ It contains static libraries for -static linking which is highly discouraged.
 
 %build
 %global build_rustflags  -Clink-arg=-Wl,-z,relro,-z,now,-soname,libresvg.so.%{soname} -C debuginfo=2 -C strip=none
-%cargo_build --all
+%cargo_build
 
 %install
 #%%{cargo_install}
