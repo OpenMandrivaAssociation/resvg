@@ -61,6 +61,7 @@ This package contains shared library.
 Summary:        SVG rendering library (C++/Qt API)
 Group:          Development/Libraries/C and C++
 Requires:	%{libname} = %{EVRD}
+Provides: resvg-devel = %{EVRD}
 
 %description -n %{devname}
 An SVG rendering library (C++/Qt API).
