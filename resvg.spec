@@ -78,10 +78,10 @@ It contains static libraries for -static linking which is highly discouraged.
 
 %build
 #global build_rustflags  -Clink-arg=-Wl,-z,relro,-z,now,-soname,libresvg.so.%{soname} -C debuginfo=2 -C strip=none
-%cargo_build
+%cargo_build --all
 
 %install
-%cargo_install -p resvg usvg
+%cargo_install -p resvg -p usvg
 #install -Dm 0755 ./target/release/%{name} %{buildroot}%{_bindir}/%{name}
 #install -Dm 0755 ./target/release/usvg %{buildroot}%{_bindir}/usvg
 #install -Dm 0755 ./target/release/lib%{name}.so %{buildroot}%{_libdir}/lib%{name}.so.%{version}
